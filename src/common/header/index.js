@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { actionCreators} from './store'
 import {
 	HeaderWrapper,
 	Logo,
@@ -58,15 +59,11 @@ const mapStateToProp = (state) => {
 const mapDispatchToProp = (dispatch) => {
 	return {
 		handleInputFocus() {
-			const action = {
-				type: 'search_focus',
-			};
+			const action = actionCreators.searchFocusAction();
 			dispatch(action);
 		},
 		handleInputBlur() {
-			const action = {
-				type: 'search_blur',
-			};
+			const action = actionCreators.searchBlurAction();
 			dispatch(action);
 		}
 	}
