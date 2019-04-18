@@ -20,14 +20,15 @@ import { CSSTransition } from 'react-transition-group'
 
 class Header extends Component {
 	getListArea() {
-		if (this.props.focused) {
+		const { focused, list} = this.props;
+		if (focused) {
 			return (
 				<SearchInfo>
 					<SearchInfoTitle>热门搜索
 						<SearchInfoSwitch>换一批</SearchInfoSwitch>
 					</SearchInfoTitle>
 					<SearchInfoList>
-						{this.props.list.map((item) => {
+						{list.map((item) => {
 							return (
 								<SearchInfoItem key={item}>
 								{item}
