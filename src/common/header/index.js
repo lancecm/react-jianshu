@@ -20,27 +20,32 @@ import { CSSTransition } from 'react-transition-group'
 
 class Header extends Component {
 	getListArea() {
-		const { focused, list} = this.props;
-		if (focused) {
+		const { focused, list, page, mouseEnter, handleMouseEnter, handleMouseLeave, handleChangePage} = this.props;
+		const pageList = [];
+		const newList = list.toJS(list); // change to JS object
+		
+		if (newList.length) {
+			for (let i = (page - 1) * 10; i < page * 10; i++) {
+				if (newList[i]){
+					pageList.push(<SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>);
+				}				
+			}
+		}
+
+		if (focused || mouseEnter) {
 			return (
-				<SearchInfo>
+				<SearchInfo 
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+				>
 					<SearchInfoTitle>热门搜索
-						<SearchInfoSwitch>换一批</SearchInfoSwitch>
+						<SearchInfoSwitch onClick={handleChangePage}>换一批</SearchInfoSwitch>
 					</SearchInfoTitle>
 					<SearchInfoList>
-						{list.map((item) => {
-							return (
-								<SearchInfoItem key={item}>
-								{item}
-								</SearchInfoItem>
-							)
-						})}
+						{pageList}
 					</SearchInfoList>
 				</SearchInfo>
-			)
-		}
-		else {
-
+			);
 		}
 	}
 
@@ -84,7 +89,9 @@ const mapStateToProp = (state) => {
 	return {
 		focused: state.getIn(['header', 'focused']),
 		// focused: state.get('header').get('focused'),
-		list: state.getIn(['header', 'list'])
+		list: state.getIn(['header', 'list']),
+		page: state.getIn(['header', 'page']),
+		mouseEnter: state.getIn(['header', 'mouseEnter']),
 	}
 }
 
@@ -97,6 +104,15 @@ const mapDispatchToProp = (dispatch) => {
 		handleInputBlur() {
 			const action = actionCreators.searchBlurAction();
 			dispatch(action);
+		},
+		handleMouseEnter() {
+			dispatch(actionCreators.mouseEnterAction());
+		},
+		handleMouseLeave() {
+			dispatch(actionCreators.mouseLeaveAction());
+		},
+		handleChangePage() {
+			dispatch(actionCreators.changePageAction());
 		}
 	}
 }
