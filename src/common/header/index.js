@@ -54,7 +54,7 @@ class Header extends Component {
 	}
 
 	render() {
-		const { focused, handleInputBlur, handleInputFocus} = this.props;
+		const { focused, handleInputBlur, handleInputFocus, list} = this.props;
 		return (
 			<HeaderWrapper> 
 				<Logo />
@@ -72,7 +72,7 @@ class Header extends Component {
 							classNames="slide"
 						>
 							<NavSearch 
-								onFocus={handleInputFocus}
+								onFocus={()=> {handleInputFocus(list)}}
 								onBlur={handleInputBlur}
 								className={focused ? 'focused' : ''}/>
 						</CSSTransition>
@@ -101,8 +101,9 @@ const mapStateToProp = (state) => {
 
 const mapDispatchToProp = (dispatch) => {
 	return {
-		handleInputFocus() {
-			dispatch(actionCreators.getListAction());
+		handleInputFocus(list) {
+			(list.size === 0) && dispatch(actionCreators.getListAction());
+			
 			dispatch(actionCreators.searchFocusAction());
 		},
 		handleInputBlur() {
@@ -122,7 +123,6 @@ const mapDispatchToProp = (dispatch) => {
 			} else {
 				originAngle = 0;
 			}
-			console.log(originAngle);
 			spin.style.transform = 'rotate('+ (originAngle + 360) +'deg)';
 			dispatch(actionCreators.changePageAction());
 		}
