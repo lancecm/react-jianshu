@@ -8,6 +8,11 @@ import {
 	NavItem,
 	NavSearch,
 	NavSearchWrapper,
+	SearchInfo,
+	SearchInfoTitle,
+	SearchInfoSwitch,
+	SearchInfoItem,
+	SearchInfoList,
 	Addition,
 	Button
 } from './style';
@@ -17,6 +22,31 @@ const Header = (props) => {
 
 	const { focused, handleInputBlur, handleInputFocus} = props;
 
+	const getListArea = (show) => {
+		if (show) {
+			return (
+				<SearchInfo>
+					<SearchInfoTitle>热门搜索
+						<SearchInfoSwitch>换一批</SearchInfoSwitch>
+					</SearchInfoTitle>
+					<SearchInfoList>
+						<SearchInfoItem>教育</SearchInfoItem>
+						<SearchInfoItem>信息</SearchInfoItem>
+						<SearchInfoItem>工作</SearchInfoItem>
+						<SearchInfoItem>学习</SearchInfoItem>
+						<SearchInfoItem>生活</SearchInfoItem>
+						<SearchInfoItem>英语</SearchInfoItem>
+						<SearchInfoItem>文化</SearchInfoItem>
+						<SearchInfoItem>留学</SearchInfoItem>
+					</SearchInfoList>
+				</SearchInfo>
+			)
+		}
+		else {
+
+		}
+	}
+	
 	return (
 		<HeaderWrapper> 
 			<Logo />
@@ -39,6 +69,7 @@ const Header = (props) => {
 							className={focused ? 'focused' : ''}/>
 					</CSSTransition>
 					<span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe62d;</span>
+					{getListArea(focused)}
 				</NavSearchWrapper>
 			</Nav>
 			<Addition>
@@ -48,7 +79,6 @@ const Header = (props) => {
 		</HeaderWrapper>
 	)
 }
-
 
 const mapStateToProp = (state) => {
 	return {
