@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { actionCreators} from './store'
+import { actionCreators } from './store'
 import {
 	HeaderWrapper,
 	Logo,
@@ -19,22 +19,21 @@ import {
 import { CSSTransition } from 'react-transition-group'
 
 class Header extends Component {
-	getListArea(show) {
-		if (show) {
+	getListArea() {
+		if (this.props.focused) {
 			return (
 				<SearchInfo>
 					<SearchInfoTitle>热门搜索
 						<SearchInfoSwitch>换一批</SearchInfoSwitch>
 					</SearchInfoTitle>
 					<SearchInfoList>
-						<SearchInfoItem>教育</SearchInfoItem>
-						<SearchInfoItem>信息</SearchInfoItem>
-						<SearchInfoItem>工作</SearchInfoItem>
-						<SearchInfoItem>学习</SearchInfoItem>
-						<SearchInfoItem>生活</SearchInfoItem>
-						<SearchInfoItem>英语</SearchInfoItem>
-						<SearchInfoItem>文化</SearchInfoItem>
-						<SearchInfoItem>留学生</SearchInfoItem>
+						{this.props.list.map((item) => {
+							return (
+								<SearchInfoItem key={item}>
+								{item}
+								</SearchInfoItem>
+							)
+						})}
 					</SearchInfoList>
 				</SearchInfo>
 			)
@@ -68,7 +67,7 @@ class Header extends Component {
 								className={focused ? 'focused' : ''}/>
 						</CSSTransition>
 						<span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe62d;</span>
-						{this.getListArea(focused)}
+						{this.getListArea()}
 					</NavSearchWrapper>
 				</Nav>
 				<Addition>
@@ -82,16 +81,17 @@ class Header extends Component {
 
 const mapStateToProp = (state) => {
 	return {
-		focused: state.getIn(['header', 'focused'])
+		focused: state.getIn(['header', 'focused']),
 		// focused: state.get('header').get('focused'),
+		list: state.getIn(['header', 'list'])
 	}
 }
 
 const mapDispatchToProp = (dispatch) => {
 	return {
 		handleInputFocus() {
-			const action = actionCreators.searchFocusAction();
-			dispatch(action);
+			dispatch(actionCreators.getListAction());
+			dispatch(actionCreators.searchFocusAction());
 		},
 		handleInputBlur() {
 			const action = actionCreators.searchBlurAction();
