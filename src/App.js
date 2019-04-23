@@ -4,6 +4,8 @@ import { GlobalStyle } from './style'
 import { GlobalStyleIconFont } from './statics/iconfont/iconfont'
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './pages/home';
+import Detail from './pages/detail';
 import store from './store';
 
 
@@ -17,8 +19,8 @@ class App extends Component {
 	        <Header />
 	        <BrowserRouter>
         		<div>
-		        	<Route path='/' exact render={()=>{return <div>home</div>;}}></Route>
-		        	<Route path='/detail' exact render={()=><div>detail</div>}></Route>
+		        	<Route path='/' exact component={Home}></Route>
+		       		<Route path='/detail' exact component={Detail}></Route>
 	        	</div>
 	        </BrowserRouter>
 	      </Fragment>
