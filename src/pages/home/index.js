@@ -8,8 +8,8 @@ import List from './components/List';
 import Recommend from './components/Recommend';
 import Writer from './components/Writer';
 import Download from './components/Download';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import { actionCreators } from './store'
 
 class Home extends Component {
 	render() {
@@ -31,23 +31,13 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		axios.get('/api/home.json').then((res)=> {
-			const data = res.data.data;
-			console.log(data);
-			const action = {
-				type: 'change_home_data',
-				topicList: data.topicList,
-				articleList: data.articleList,
-				recommendList: data.recommendList,
-			};
-			this.props.changeHomeData(action);
-		});
-
+		this.props.changeHomeData();
 	}
 }
 
 const mapDisPatch = (dispatch) => ({
-	changeHomeData(action) {
+	changeHomeData() {
+		const action = actionCreators.getHomeInfo();
 		dispatch(action);
 	},
 });
