@@ -89,7 +89,7 @@ export const ListInfo = styled.div`
 export const RecommendWrapper = styled.div`
 	margin-top: -4px;
     padding-bottom: 4px;
-    min-height: 228px;
+
 `
 export const RecommendItem = styled.a`
 	display: block;
