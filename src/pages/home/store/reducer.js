@@ -10,8 +10,45 @@ const defaultState = fromJS({
 		id: 2,
 		title: '手绘',
 		imgUrl: 'https://upload-images.jianshu.io/upload_images/14715425-49e1dccf1fcf51da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp',
+	}],
+	articleList: [{
+		id: 1,
+		title: '利用google官方控件实现下拉刷新和上拉加载(SwipeRefreshLayout+Paging)',
+		desc: '简要介绍 现在网上有各种下拉刷新控件,各种炫酷(如:SmartRefreshLayout).不过如果没有特别要求时,官方的控件就够用了,关键时,...',
+		imgUrl: 'https://upload-images.jianshu.io/upload_images/1999214-0c42f346f58b383d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240',
 	},
-	]
+	{
+		id: 2,
+		title: '国产SSH客户端崛起，替代xshell。',
+		desc: '官网地址：http://www.hostbuf.com 官网各版本下载地址：http://www.hostbuf.com/t/988.html ...',
+		imgUrl: 'https://upload-images.jianshu.io/upload_images/9321562-bc8413defcc4aaab?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240'
+	},
+	{
+		id: 3,
+		title: '2019年，自媒体的红利期还在吗？',
+		desc: '1 前几天读了一篇文章，文章标题上来就是，2019，别再做公众号了！ 微信公众号作为自媒体最先开始以及现在发展最好的平台，从13/14年出现至今...',
+		imgUrl: null
+	}],
+	recommendList: [{
+		id: 1,
+		imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-club-aa8bdf19f8cf729a759da42e4a96f366.png', 
+		href: '/'
+	},
+	{
+		id: 2,
+		imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-7-1a0222c91694a1f38e610be4bf9669be.png', 
+		href: '/'
+	},
+	{
+		id: 3,
+		imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-5-4ba25cf5041931a0ed2062828b4064cb.png', 
+		href: '/'
+	},
+	{
+		id: 4,
+		imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png', 
+		href: '/'
+	}]
 })
 
 export default (state = defaultState, action) => {
