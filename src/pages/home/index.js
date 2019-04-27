@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { HomeWrapper,
+import { 
+	HomeWrapper,
 	HomeLeft,
 	HomeRight,
 } from './style';
@@ -9,8 +10,8 @@ import Recommend from './components/Recommend';
 import Writer from './components/Writer';
 import Download from './components/Download';
 import { connect } from 'react-redux';
-import { actionCreators } from './store'
-import { BackTop } from './style'
+import { actionCreators } from './store';
+import { BackTop } from './style';
 
 class Home extends PureComponent {
 	handleScrollTop() {
