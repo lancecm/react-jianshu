@@ -32,3 +32,8 @@ export const getMoreList = (page) => {
 		});
 	}
 }
+
+export const toggleUpShow = (show) => ({
+	type: constants.TOGGLE_SCROLL_TOP,
+	show
+})

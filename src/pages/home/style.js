@@ -200,3 +200,19 @@ export const LoadMore = styled.div`
 	cursor: pointer;
 `
 
+export const BackTop  = styled.div`
+	display: block;
+	position: fixed;
+	right: 40px;
+	bottom: 30px;
+	font-size: 10px;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	color: #969696;
+	border-radius: 30%;
+`
+

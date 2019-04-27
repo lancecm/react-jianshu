@@ -7,7 +7,6 @@ import { reducer as homeReducer} from '../pages/home/store'
 const reducer = combineReducers({
 	header: headerReducer, // header是给headerReducer起的名字
 	home: homeReducer,
-
 })
 
 export default reducer;

@@ -10,9 +10,15 @@ import Writer from './components/Writer';
 import Download from './components/Download';
 import { connect } from 'react-redux';
 import { actionCreators } from './store'
+import { BackTop } from './style'
 
 class Home extends Component {
+	handleScrollTop() {
+		window.scrollTo(0, 0);
+	}
+
 	render() {
+		console.log(this.props.showScroll);
 		return (
 			<HomeWrapper>
 				<HomeLeft>
@@ -26,20 +32,41 @@ class Home extends Component {
 					<Download></Download>
 					<Writer></Writer>
 				</HomeRight>
+				{ this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop> : null}
 			</HomeWrapper>
 		)
 	}
 
 	componentDidMount() {
 		this.props.changeHomeData();
+		this.bindEvents();
+	}
+
+	bindEvents() {
+		window.addEventListener('scroll', this.props.changeScrollTopShow);
+	}
+
+	componentWilUnmount() {
+		window.removeEventLisener('scroll', this.props.changeScrollTopShow);
 	}
 }
 
+const mapState = (state) => ({
+	showScroll: state.getIn(['home', 'showScroll']),
+})
+
 const mapDisPatch = (dispatch) => ({
 	changeHomeData() {
-		const action = actionCreators.getHomeInfo();
-		dispatch(action);
+		dispatch(actionCreators.getHomeInfo());
 	},
+	changeScrollTopShow(e) {
+		const dis = document.documentElement.scrollTop;
+		if (dis > 300) {
+			dispatch(actionCreators.toggleUpShow(true));
+		} else {
+			dispatch(actionCreators.toggleUpShow(false))
+		}
+	}
 });
 
-export default connect(null, mapDisPatch)(Home);
+export default connect(mapState, mapDisPatch)(Home);
