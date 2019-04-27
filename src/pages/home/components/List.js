@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import { ListItem, ListInfo, LoadMore} from '../style';
 import { connect } from 'react-redux';
-import { actionCreators } from '../store' 
+import { actionCreators } from '../store'; 
+import { Link } from 'react-router-dom';
+
 class List extends PureComponent {
 	render() {
 		const { list, getMoreList, page} = this.props;
@@ -11,23 +13,27 @@ class List extends PureComponent {
 					list.map((item, index) => {
 						if (item.get('imgUrl')) {
 							return (
-								<ListItem key={index}>
-									<ListInfo>
-										<h3 className='title'>{item.get('title')}</h3>
-										<p className='desc'>{item.get('desc')}</p>
-									</ListInfo>
-									<img alt='' className='listItem-pic' src={item.get('imgUrl')}/>
-								</ListItem>
+								<Link to='/detail' key={index}>
+									<ListItem>
+										<ListInfo>
+											<h3 className='title'>{item.get('title')}</h3>
+											<p className='desc'>{item.get('desc')}</p>
+										</ListInfo>
+										<img alt='' className='listItem-pic' src={item.get('imgUrl')}/>
+									</ListItem>
+								</Link>
 							);
 						}
 						else {
 							return (
-								<ListItem key={index}>
-									<ListInfo>
-										<h3 className='title'>{item.get('title')}</h3>
-										<p className='desc full'>{item.get('desc')}</p>
-									</ListInfo>
-								</ListItem>
+								<Link to='/detail' key={index}>
+									<ListItem>
+										<ListInfo>
+											<h3 className='title'>{item.get('title')}</h3>
+											<p className='desc full'>{item.get('desc')}</p>
+										</ListInfo>
+									</ListItem>
+								</Link>
 							);
 						}
 					})

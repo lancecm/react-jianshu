@@ -18,7 +18,6 @@ class Home extends PureComponent {
 	}
 
 	render() {
-		console.log(this.props.showScroll);
 		return (
 			<HomeWrapper>
 				<HomeLeft>
@@ -48,10 +47,6 @@ class Home extends PureComponent {
 
 	componentWilUnmount() {
 		window.removeEventLisener('scroll', this.props.changeScrollTopShow);
-	}
-
-	shouldComponentUpdate() {
-
 	}
 }
 

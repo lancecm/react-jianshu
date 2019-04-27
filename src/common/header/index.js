@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from './store'
 import {
@@ -17,8 +17,9 @@ import {
 	Button
 } from './style';
 import { CSSTransition } from 'react-transition-group'
+import { Link } from 'react-router-dom';
 
-class Header extends Component {
+class Header extends PureComponent {
 	getListArea() {
 		const { focused, list, page, mouseEnter, handleMouseEnter, handleMouseLeave, handleChangePage} = this.props;
 		const pageList = [];
@@ -57,7 +58,9 @@ class Header extends Component {
 		const { focused, handleInputBlur, handleInputFocus, list} = this.props;
 		return (
 			<HeaderWrapper> 
-				<Logo />
+				<Link to={'/'}>
+					<Logo />
+				</Link>
 				<Nav>
 					<NavItem className="left active"><i className="iconfont">&#xe69b;</i>首页</NavItem>
 					<NavItem className="left"><i className="iconfont">&#xe60f;</i>下载App</NavItem>

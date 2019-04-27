@@ -9,9 +9,7 @@ export const HeaderWrapper = styled.div`
 `
 
 // url(${logoPic}) 是一个多行文本嵌变量的语法
-export const Logo = styled.a.attrs({
-	href : '/'
-})`
+export const Logo = styled.div`
 	position: absolute;
 	display: block;
 	height: 56px;
