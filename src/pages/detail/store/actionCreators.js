@@ -3,7 +3,6 @@ import * as constants from './constants';
 
 export const getDetailAction = (id) => {
 		return (dispatch) => {
-			console.log(id);
 			axios.get('/api/detail.json?id=' + id).then((res) => {
 			const data = res.data.data;
 			const action = {

@@ -5,7 +5,8 @@ export const HeaderWrapper = styled.div`
 	margin: 0px 0px 0px 0px
 	position: relative;
 	height: 56px;
-	border-bottom: 1px solid #f0f0f0
+	border-bottom: 1px solid #f0f0f0;
+	z-index:1;
 `
 
 // url(${logoPic}) 是一个多行文本嵌变量的语法
