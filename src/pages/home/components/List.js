@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../store' 
 class List extends Component {
 	render() {
-		const { list, getMoreList } = this.props;
+		const { list, getMoreList, page} = this.props;
 		return (
 			<div>
 				{
-					list.map((item) => {
+					list.map((item, index) => {
 						if (item.get('imgUrl')) {
 							return (
-								<ListItem key={item.get('id')}>
+								<ListItem key={index}>
 									<ListInfo>
 										<h3 className='title'>{item.get('title')}</h3>
 										<p className='desc'>{item.get('desc')}</p>
@@ -22,7 +22,7 @@ class List extends Component {
 						}
 						else {
 							return (
-								<ListItem key={item.get('id')}>
+								<ListItem key={index}>
 									<ListInfo>
 										<h3 className='title'>{item.get('title')}</h3>
 										<p className='desc full'>{item.get('desc')}</p>
@@ -32,19 +32,20 @@ class List extends Component {
 						}
 					})
 				}
-			<LoadMore onClick={getMoreList}>Load More</LoadMore>
+			<LoadMore onClick={()=>getMoreList(page)}>Load More</LoadMore>
 			</div>
 		)
 	}
 }
 
 const mapStateToProp = (state)=> ({
-	list: state.getIn(['home', 'articleList'])
+	list: state.getIn(['home', 'articleList']),
+	page: state.getIn(['home', 'articlePage']),
 });
 
 const mapDispatchToProp = (dispatch)=> ({
-	getMoreList() {
-		dispatch(actionCreators.getMoreList());
+	getMoreList(page) {
+		dispatch(actionCreators.getMoreList(page));
 	},
 });
 

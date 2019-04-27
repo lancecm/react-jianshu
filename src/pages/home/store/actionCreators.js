@@ -8,9 +8,10 @@ const changeHomeData = (data) => ({
 	recommendList: data.recommendList,
 })
 
-const addHomeList = (list) => ({
+const addHomeList = (list, newPage) => ({
 	type: constants.ADD_ARTICLE_LIST,
-	list: list
+	list: list,
+	newPage
 })
 
 // use redux-thunk
@@ -23,11 +24,11 @@ export const getHomeInfo = () => {
 	}
 }
 
-export const getMoreList = () => {
+export const getMoreList = (page) => {
 	return (dispatch)=> {
-		axios.get('/api/homeList.json').then((res)=> {
+		axios.get('/api/homeList.json?page=' + page).then((res)=> {
 			const newList = res.data.data;
-			dispatch(addHomeList(newList));
+			dispatch(addHomeList(newList, page + 1)); 
 		});
 	}
 }
