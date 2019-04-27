@@ -188,3 +188,15 @@ export const WriterList = styled.ul`
     }
 `
 
+export const LoadMore = styled.div`
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background: #ddd;
+	text-align: center;
+	border-radius: 20px;
+	margin: 30px 0;
+	color: #fff;
+	cursor: pointer;
+`
+
