@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { HomeWrapper,
 	HomeLeft,
 	HomeRight,
@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from './store'
 import { BackTop } from './style'
 
-class Home extends Component {
+class Home extends PureComponent {
 	handleScrollTop() {
 		window.scrollTo(0, 0);
 	}
@@ -48,6 +48,10 @@ class Home extends Component {
 
 	componentWilUnmount() {
 		window.removeEventLisener('scroll', this.props.changeScrollTopShow);
+	}
+
+	shouldComponentUpdate() {
+
 	}
 }
 
