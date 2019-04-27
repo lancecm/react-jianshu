@@ -1,9 +1,10 @@
 import axios from 'axios';
 import * as constants from './constants';
 
-export const getDetailAction = (dispatch) => {
+export const getDetailAction = (id) => {
 		return (dispatch) => {
-			axios.get('/api/detail.json').then((res) => {
+			console.log(id);
+			axios.get('/api/detail.json?id=' + id).then((res) => {
 			const data = res.data.data;
 			const action = {
 				type: constants.GET_DETAIL,

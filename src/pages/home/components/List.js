@@ -13,7 +13,7 @@ class List extends PureComponent {
 					list.map((item, index) => {
 						if (item.get('imgUrl')) {
 							return (
-								<Link to='/detail' key={index}>
+								<Link to={'/detail/' + item.get('id')} key={index}>
 									<ListItem>
 										<ListInfo>
 											<h3 className='title'>{item.get('title')}</h3>
@@ -26,7 +26,7 @@ class List extends PureComponent {
 						}
 						else {
 							return (
-								<Link to='/detail' key={index}>
+								<Link to={'/detail/' + item.get('id')} key={index}>
 									<ListItem>
 										<ListInfo>
 											<h3 className='title'>{item.get('title')}</h3>
