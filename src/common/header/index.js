@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import { connect } from 'react-redux';
-import { actionCreators } from './store'
+import { actionCreators } from './store';
 import {
 	HeaderWrapper,
 	Logo,
@@ -16,8 +16,9 @@ import {
 	Addition,
 	Button
 } from './style';
-import { CSSTransition } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
+import { actionCreators as loginActionCreators } from '../../pages/login/store';
 
 class Header extends PureComponent {
 	getListArea() {
@@ -55,16 +56,18 @@ class Header extends PureComponent {
 	}
 
 	render() {
-		const { focused, handleInputBlur, handleInputFocus, list} = this.props;
+		const { focused, handleInputBlur, handleInputFocus, list, login, logout} = this.props;
 		return (
 			<HeaderWrapper> 
 				<Link to={'/'}>
 					<Logo />
 				</Link>
 				<Nav>
-					<NavItem className="left active"><i className="iconfont">&#xe69b;</i>首页</NavItem>
+					<Link to='/'><NavItem className="left active"><i className="iconfont">&#xe69b;</i>首页</NavItem></Link>
 					<NavItem className="left"><i className="iconfont">&#xe60f;</i>下载App</NavItem>
-					<NavItem className="right">登录</NavItem>
+					{ login ? 
+						<Link onClick={logout}><NavItem className="right">退出</NavItem></Link> : 
+						<Link to='/login'><NavItem className="right">登录</NavItem></Link> }
 					<NavItem className="right">
 						<span className="iconfont">&#xe636;</span>
 					</NavItem>
@@ -99,6 +102,7 @@ const mapStateToProp = (state) => {
 		list: state.getIn(['header', 'list']),
 		page: state.getIn(['header', 'page']),
 		mouseEnter: state.getIn(['header', 'mouseEnter']),
+		login: state.getIn(['login', 'login']),
 	}
 }
 
@@ -128,6 +132,9 @@ const mapDispatchToProp = (dispatch) => {
 			}
 			spin.style.transform = 'rotate('+ (originAngle + 360) +'deg)';
 			dispatch(actionCreators.changePageAction());
+		},
+		logout() {
+			dispatch(loginActionCreators.logout());
 		}
 	}
 }
