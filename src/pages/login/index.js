@@ -6,9 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 class Login extends PureComponent {
 	render() {
-		console.log(this.props);
 		const { loginState } = this.props;
-		console.log(loginState);
 		if (!loginState) {
 			return ( 
 				<LoginWrapper>

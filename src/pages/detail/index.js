@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from './store';
 
 class Detail extends PureComponent {
+	
 	render() {
 		const { title, content } = this.props;
 		return (
