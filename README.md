@@ -1,9 +1,18 @@
+# Introduction
 ## Display of the project
 ### Home page
 ![alt text](screenshots/home.png "home page")
 ### Detail page
 ![alt text](screenshots/detail.png "detail page")
+## How to deploy?
+### 1. Get a VPS, and connect your host using ssh
+### 2. Consider install the apache server step by step: (https://hostadvice.com/how-to/how-to-install-lamp-stack-on-centos-7/), just install apache is OK.
+### 3. Under the project folder, remove the fake data folder under `/public/api` before using `npm run build` to get a build folder
+### 4. Compress this build folder and upload build.zip to your server `scp build.zip xxx@xxx.xxx.xxx.xx:/var/www/html`
+### 5. Install a tool to uzip `build.zip`, like `unzip`
+### 6. Move all the files in `/var/www/html/build` to `/var/www/html`, then you can see your project run on your host
 
+# Other info
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
