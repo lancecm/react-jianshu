@@ -1,3 +1,9 @@
+## Display of the project
+### Home page
+![alt text](screenshots/home.png "home page")
+### Detail page
+![alt text](screenshots/detail.png "detail page")
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
